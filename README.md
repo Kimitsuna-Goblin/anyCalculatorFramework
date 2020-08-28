@@ -69,7 +69,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Four arithmetic operations with two numbers
 + [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html)
 	- 3つの数値の平均値、標準偏差
-	- Means and standard deviation of three numbers
+	- Means and the standard deviation of three numbers
 + [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html)
 	- Math クラスのラッパー関数の動作確認
 	- Checking the operations of the Math class wrapper functions
