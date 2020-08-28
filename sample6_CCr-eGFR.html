@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<HTML lang="ja">
+<!--
+	Copyright (C) 2020 浦 公統
+	Released under the MIT license.
+	see https://opensource.org/licenses/MIT/
+-->
+<HEAD>
+	<META charset="UTF-8">
+	<META name="viewport" content="width=device-width">
+	<TITLE>CCr・eGFR計算</TITLE>
+	<STYLE>
+		TABLE, TH, TD
+		{
+			border: solid 2px;
+		}
+	</STYLE>
+	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
+	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
+	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
+	<SCRIPT>
+		/**
+		 *	初期化
+		 */
+		function init()
+		{
+			//	入力項目
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false) 
+			var inputs = [
+							new itemInput( '性別 (1:男性 2:女性)', 'sex', null, null, false ),
+							new itemInput( '年齢', 'age', '歳', null, false ),
+							new itemInput( '身長 (省略可)', 'height', 'cm', null, true ),
+							new itemInput( '体重', 'weight', 'kg', null, false ),
+							new itemInput( '血清クレアチニン (SCr)', 'SCr', 'mg/dl', null, false )
+						];
+
+			//	出力項目
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3) 
+			var outputs = [
+							new itemOutput( '体表面積', 'BS', 'm<sup>2</sup>', 2 ),
+							new itemOutput( 'CCr', 'CCr', 'mg/dl', 2 ),
+							new itemOutput( '標準化 eGFR<sub>cre</sub>', 'eGFR1.73', 'ml/min/1.73m<sup>2</sup>', 2 ),
+							new itemOutput( '個別 eGFR<sub>cre</sub>', 'eGFR', 'ml/min', 2 )
+						];
+
+			//	計算機アプリのインスタンス生成
+			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			new anyCalculator( 'CCr', inputs, outputs, 'CCr・eGFR計算', calc, onError, 3 );
+		}
+
+		/**
+		 *	CCr等を計算する
+		 *	@param	inputs		入力項目
+		 *	@param	outputs		出力項目
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 */
+		function calc( inputs, outputs )
+		{
+			//	女性フラグ
+			var isFemale = null;
+			switch ( inputs[ 'sex' ] )
+			{
+			case 1:
+				isFemale = false;
+				break;
+			case 2:
+				isFemale = true;
+				break;
+			default:
+				alert( '性別が不正です' );
+				return;
+			}
+
+			//	体表面積
+			if ( isNaN( inputs[ 'height' ] ) )
+			{
+				//	身長未入力 ⇒ 拡張Clark式
+				if ( isFemale )
+				{
+					outputs[ 'BS' ] = 1.73 * pow( inputs[ 'weight' ] / 62.8, 2 / 3 );
+				}
+				else
+				{
+					outputs[ 'BS' ] = 1.73 * pow( inputs[ 'weight' ] / 64.3, 2 / 3 );
+				}
+			}
+			else
+			{
+				//	身長あり ⇒ 設楽式
+				if ( isFemale )
+				{
+					outputs[ 'BS' ] = pow( inputs[ 'weight' ], 0.439 ) * pow( inputs[ 'height' ], 0.682 ) * 0.0083737;
+				}
+				else
+				{
+					outputs[ 'BS' ] = pow( inputs[ 'weight' ], 0.444 ) * pow( inputs[ 'height' ], 0.668 ) * 0.0086685;
+				}
+			}
+
+			//	CCr
+			outputs[ 'CCr' ] = ( 140 - inputs[ 'age' ] ) * inputs[ 'weight' ] / ( 72 * inputs[ 'SCr' ] );
+			if ( isFemale )
+			{
+				outputs[ 'CCr' ] *= 0.85;
+			}
+			
+			//	eGFR
+			outputs[ 'eGFR1.73' ] = 194 * pow( inputs[ 'SCr' ], -1.094 ) * pow( inputs[ 'age' ], -0.287 );
+			if ( isFemale )
+			{
+				outputs[ 'eGFR1.73' ] *= 0.739;
+			}
+
+			outputs[ 'eGFR' ] = outputs[ 'eGFR1.73' ] * outputs[ 'BS' ] / 1.73;
+		}
+
+		/**
+		 *	必須項目省略時のエラー処理
+		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *					item.title		項目名
+		 *					item.id			ID
+		 *					item.unit		単位
+		 *					item.initValue	初期値
+		 *					item.element	INPUT 要素
+		 */
+		function onError( item )
+		{
+			alert( item.title + 'は省略できません' );
+			item.element.focus();
+		}
+	</SCRIPT>
+</HEAD>
+<BODY onload="init();">
+	<!-- 計算機はこの TABLE に表示されます --->
+	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
+	<TABLE id="CCr"></TABLE>
+	<DIV>※ 体表面積は身長入力時は設楽式で計算します。身長省略時は拡張Clark式で概算します。</DIV>
+	<DIV>※ CCrはCockcroft-Gault式で計算します。</DIV>
+</BODY>
+</HTML>

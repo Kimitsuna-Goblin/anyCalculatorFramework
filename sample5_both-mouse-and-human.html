@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<HTML lang="ja">
+<!--
+	Copyright (C) 2020 浦 公統
+	Released under the MIT license.
+	see https://opensource.org/licenses/MIT/
+-->
+<HEAD>
+	<META charset="UTF-8">
+	<META name="viewport" content="width=device-width">
+	<TITLE>ヒト等価用量計算・逆計算</TITLE>
+	<STYLE>
+		TABLE, TH, TD
+		{
+			border: solid 2px;
+		}
+	</STYLE>
+	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
+	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
+	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
+	<SCRIPT>
+		/**
+		 *	初期化
+		 */
+		function init()
+		{
+			//	1つ目のテーブルの設定
+			var inputs = [
+							new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0 ),
+							new itemInput( 'ヒト体重', 'humanWeight', 'kg', 63.6 ),
+							new itemInput( 'マウス用量', 'mouseDosage', 'mg/kg' )
+						];
+
+			var outputs = [
+							new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg' ),
+							new itemOutput( '標準成人用量', 'adultDosage', 'mg' )
+						];
+
+			new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError );
+			
+			//	2つ目のテーブルの設定
+			inputs = [
+							new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0 ),
+							new itemInput( 'ヒト体重', 'humanWeight', 'kg', 63.6 ),
+							new itemInput( '標準ヒト用量', 'humanDosage', 'mg' )
+					];
+
+			outputs = [
+							new itemOutput( 'マウス用量', 'mouseDosagePerWeight', 'mg/kg' ),
+						 	new itemOutput( '1匹当たり用量', 'mouseDosagePerBody', 'mg' )
+					 ];
+
+			new anyCalculator( 'humanToMouse', inputs, outputs, 'マウス用量計算', calcMouseDosage, onError );
+		}
+
+		/**
+		 *	ヒト等価用量を計算する
+		 */
+		function calcHumanDosage( inputs, outputs )
+		{
+			outputs[ 'humanDosage' ] = inputs[ 'mouseDosage' ]
+											* cbrt( inputs[ 'mouseWeight' ] / 1000.0 / inputs[ 'humanWeight' ] );
+			outputs[ 'adultDosage' ] = inputs[ 'mouseDosage' ]
+											* cbrt( inputs[ 'mouseWeight' ] / 1000.0 * inputs[ 'humanWeight' ] * inputs[ 'humanWeight' ] );
+		}
+
+		/**
+		 *	マウス用量を計算する
+		 */
+		function calcMouseDosage( inputs, outputs )
+		{
+			humanDosage_PerKg = inputs[ 'humanDosage' ] / inputs[ 'humanWeight' ];
+			mouse_kg = inputs[ 'mouseWeight' ] / 1000.0;
+
+			outputs[ 'mouseDosagePerWeight' ] = humanDosage_PerKg * cbrt( inputs[ 'humanWeight' ] / mouse_kg );
+			outputs[ 'mouseDosagePerBody' ] = humanDosage_PerKg * cbrt( inputs[ 'humanWeight' ] * mouse_kg * mouse_kg );
+		}
+
+		/**
+		 *	必須項目省略時のエラー処理
+		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 */
+		function onError( item )
+		{
+			alert( item.title + 'は省略できません' );
+			item.element.focus();
+		}
+	</SCRIPT>
+</HEAD>
+<BODY onload="init();">
+	<!-- 計算機はこれらの TABLE に表示されます --->
+	<!-- id を複数使えば、1個のHTML上にいくらでも計算機を配置できます -->
+	<TABLE id="mouseToHuman"></TABLE>
+	<BR>
+	<TABLE id="humanToMouse"></TABLE>
+</BODY>
+</HTML>

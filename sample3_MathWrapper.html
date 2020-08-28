@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<HTML lang="ja">
+<!--
+	Copyright (C) 2020 浦 公統
+	Released under the MIT license.
+	see https://opensource.org/licenses/MIT/
+-->
+<HEAD>
+	<META charset="UTF-8">
+	<META name="viewport" content="width=device-width">
+	<TITLE>MathWrapper のサンプル</TITLE>
+	<STYLE>
+		TABLE, TH, TD
+		{
+			border: solid 2px;
+		}
+	</STYLE>
+	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
+	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
+	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
+	<SCRIPT>
+		/**
+		 *	初期化
+		 */
+		function init()
+		{
+			//	入力項目
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
+			//	入力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var inputs = [
+							new itemInput( 'x', 'x' ),
+							new itemInput( 'y', 'y' ),
+							new itemInput( 'z', 'z' )
+						];
+
+			//	出力項目
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3)
+			//	出力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var outputs = [
+							new itemOutput( 'abs(x)',			'abs' ),
+							new itemOutput( 'max(x, y, z)',		'max' ),
+							new itemOutput( 'min(x, y, z)',		'min' ),
+							new itemOutput( 'sin(x)',			'sin' ),
+							new itemOutput( 'cos(x)',			'cos' ),
+							new itemOutput( 'tan(x)',			'tan' ),
+							new itemOutput( 'asin(x)',			'asin' ),
+							new itemOutput( 'acos(x)',			'acos' ),
+							new itemOutput( 'atan(x)',			'atan' ),
+							new itemOutput( 'atan2(y, x)',		'atan2' ),
+							new itemOutput( 'sinh(x)',			'sinh' ),
+							new itemOutput( 'cosh(x)',			'cosh' ),
+							new itemOutput( 'tanh(x)',			'tanh' ),
+							new itemOutput( 'ceil(x)',			'ceil' ),
+							new itemOutput( 'floor(x)',			'floor' ),
+							new itemOutput( 'trunc(x)',			'trunc' ),
+							new itemOutput( 'sqrt(x)',			'sqrt' ),
+							new itemOutput( 'cbrt(x)',			'cbrt' ),
+							new itemOutput( 'hypot(x, y, z)',	'hypot' ),
+							new itemOutput( 'pow(x, y)',		'pow' ),
+							new itemOutput( 'exp(x)',			'exp' ),
+							new itemOutput( 'log(x)',			'log' ),
+							new itemOutput( 'ln(x)',			'ln' ),
+							new itemOutput( 'log10(x)',			'log10' ),
+							new itemOutput( 'log2(x)',			'log2' )
+						];
+ 
+
+			//	計算機アプリのインスタンス生成
+			//	インスタンスをグローバル変数に保持する必要はない (クラスの静的配列プロパティに保持される)
+			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			new anyCalculator( 'calculator', inputs, outputs, '計算', calc, onError );
+		}
+
+		/**
+		 *	計算関数
+		 *	@param	inputs		入力項目
+		 *	@param	outputs		出力項目
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 */
+		function calc( inputs, outputs )
+		{
+			outputs[ 'abs' ]	= abs( inputs[ 'x' ] );
+			outputs[ 'max' ]	= max( inputs[ 'x' ], inputs[ 'y' ], inputs[ 'z' ] );
+			outputs[ 'min' ]	= min( inputs[ 'x' ], inputs[ 'y' ], inputs[ 'z' ] );
+			outputs[ 'sin' ]	= sin( inputs[ 'x' ] );
+			outputs[ 'cos' ]	= cos( inputs[ 'x' ] );
+			outputs[ 'tan' ]	= tan( inputs[ 'x' ] );
+			outputs[ 'asin' ]	= asin( inputs[ 'x' ] );
+			outputs[ 'acos' ]	= acos( inputs[ 'x' ] );
+			outputs[ 'atan' ]	= atan( inputs[ 'x' ] );
+			outputs[ 'atan2' ]	= atan2( inputs[ 'y' ], inputs[ 'x' ] );
+			outputs[ 'sinh' ]	= sinh( inputs[ 'x' ] );
+			outputs[ 'cosh' ]	= cosh( inputs[ 'x' ] );
+			outputs[ 'tanh' ]	= tanh( inputs[ 'x' ] );
+			outputs[ 'ceil' ]	= ceil( inputs[ 'x' ] );
+			outputs[ 'floor' ]	= floor( inputs[ 'x' ] );
+			outputs[ 'trunc' ]	= trunc( inputs[ 'x' ] );
+			outputs[ 'sqrt' ]	= sqrt( inputs[ 'x' ] );
+			outputs[ 'cbrt' ]	= cbrt( inputs[ 'x' ] );
+			outputs[ 'hypot' ]	= hypot( inputs[ 'x' ], inputs[ 'y' ], inputs[ 'z' ] );
+			outputs[ 'pow' ]	= pow( inputs[ 'x' ], inputs[ 'y' ] );
+			outputs[ 'exp' ]	= exp( inputs[ 'x' ] );
+			outputs[ 'log' ]	= log( inputs[ 'x' ] );
+			outputs[ 'ln' ]		= ln( inputs[ 'x' ] );
+			outputs[ 'log10' ]	= log10( inputs[ 'x' ] );
+			outputs[ 'log2' ]	= log2( inputs[ 'x' ] );
+		}                   
+
+		/**
+		 *	必須項目省略時のエラー処理
+		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *					item.title		項目名
+		 *					item.id			ID
+		 *					item.unit		単位
+		 *					item.initValue	初期値
+		 *					item.element	INPUT 要素
+		 */
+		function onError( item )
+		{
+			alert( item.title + 'は省略できません' );
+			item.element.focus();
+		}
+	</SCRIPT>
+</HEAD>
+<BODY onload="init();">
+	<!-- 計算機はこの TABLE に表示されます --->
+	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
+	<TABLE id="calculator"></TABLE>
+</BODY>
+</HTML>

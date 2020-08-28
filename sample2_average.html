@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<HTML lang="ja">
+<!--
+	Copyright (C) 2020 浦 公統
+	Released under the MIT license.
+	see https://opensource.org/licenses/MIT/
+-->
+<HEAD>
+	<META charset="UTF-8">
+	<META name="viewport" content="width=device-width">
+	<TITLE>平均値・標準偏差 サンプル</TITLE>
+	<STYLE>
+		TABLE, TH, TD
+		{
+			border: solid 2px;
+		}
+	</STYLE>
+	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
+	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
+	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
+	<SCRIPT>
+		/**
+		 *	初期化
+		 */
+		function init()
+		{
+			//	入力項目
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
+			//	入力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var inputs = [
+							new itemInput( '数値1', 'num1' ),
+							new itemInput( '数値2', 'num2' ),
+							new itemInput( '数値3', 'num3' )
+						];
+
+			//	出力項目
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3)
+			//	出力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var outputs = [
+							new itemOutput( '平均 (小数点以下四捨五入)', 'ave0', null, 0 ),
+							new itemOutput( '平均 (小数第1位まで)', 'ave1', null, 1 ),
+							new itemOutput( '標準偏差 (小数第３位まで)', 'sigma' )
+						];
+ 
+
+			//	計算機アプリのインスタンス生成
+			//	インスタンスをグローバル変数に保持する必要はない (クラスの静的配列プロパティに保持される)
+			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			new anyCalculator( 'calculator', inputs, outputs, '計算', calc, onError, 16 );
+		}
+
+		/**
+		 *	計算関数
+		 *	@param	inputs		入力項目
+		 *	@param	outputs		出力項目
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 */
+		function calc( inputs, outputs )
+		{
+			outputs[ 'ave0' ] = ( inputs[ 'num1' ] + inputs[ 'num2' ] + inputs[ 'num3' ] ) / 3;
+
+			outputs[ 'ave1' ] = outputs[ 'ave0' ];
+
+			outputs[ 'sigma' ] = hypot( inputs[ 'num1' ] - outputs[ 'ave0' ],
+										inputs[ 'num2' ] - outputs[ 'ave0' ],
+										inputs[ 'num3' ] - outputs[ 'ave0' ] );
+		}
+
+		/**
+		 *	必須項目省略時のエラー処理
+		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *					item.title		項目名
+		 *					item.id			ID
+		 *					item.unit		単位
+		 *					item.initValue	初期値
+		 *					item.element	INPUT 要素
+		 */
+		function onError( item )
+		{
+			alert( item.title + 'は省略できません' );
+			item.element.focus();
+		}
+	</SCRIPT>
+</HEAD>
+<BODY onload="init();">
+	<!-- 計算機はこの TABLE に表示されます --->
+	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
+	<TABLE id="calculator"></TABLE>
+</BODY>
+</HTML>
