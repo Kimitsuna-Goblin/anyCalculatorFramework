@@ -2,7 +2,7 @@
 
 ウェブブラウザ上で動く、シンプルな計算用アプリを簡単に作成できるフレームワークです。
 <BR>ライブラリ本体のソースファイルです。
-This is a framework that allows you to easily create si外部ライブラリ (例えば [jQuery](https://jquery.com/)) は特に必要ありませんが、もし、あなたが精密な計算制度を求めるなら bignumber などを使うと良いかも本体の JavaScript ファイルです。知れません。mple calculation apps that run in a web browser.
+This is a framework that allows you to easily create simple calculation apps that run in a web browser.
 
 ## 説明 - Description
 
