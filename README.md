@@ -66,31 +66,24 @@ Any of results of calculations with sample apps are not guaranteed.
 <BR>
 <BR>
 + [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html) - 2つの数値の四則演算
-<BR>
 Four arithmetic operations with two numbers
 
 + [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html) - 3つの数値の平均値、標準偏差
-<BR>Evaluation of the renal function (calculation of CCr and eGFR)
 Means and standard deviation of three numbers
 
 + [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html) - Math クラスのラッパー関数の動作確認
-<BR>
 Checking the operations of the Math class wrapper functions
 
 + [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html) - マウスへの薬物投与量からのヒト等価用量計算
-<BR>
 Calculation of human equivalent doses from doses to mice
 
 + [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html) - マウス用量とヒト用量の相互換算
-<BR>
 Interconversions of mouse and human doses
 
 + [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html) - 腎機能の評価 (CCr と eGFR の計算)
-<BR>
 Evaluation of the renal function (calculation of CCr and eGFR)
 
 + [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html) - 小児薬用量計算
-<BR>
 Pediatric Dosage Calculations
 
 
