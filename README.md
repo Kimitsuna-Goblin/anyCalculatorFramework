@@ -60,7 +60,7 @@ the formulas used in your app are simple and intuitive to write.
 
 ## 使用方法 - Usage
 
-サンプル ([sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) など) を参考に、
+アプリを開発するには、サンプル ([sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) など) を参考に、
 計算アプリを表示するための HTML ファイルを作成して、lib フォルダの親フォルダに配置してください。
 <BR>
 <BR>
@@ -78,9 +78,11 @@ the formulas used in your app are simple and intuitive to write.
 慣れれば、あっという間にアプリを開発できるでしょう。
 
 あなたのアプリを配布する場合は、著作権表示を書き換えるのを忘れないようにしてください。
-<P>
-Place your app's HTML file in the parent folder of the lib folder with reference to [sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) and other samples.
-<P>
+<BR>
+<BR>
+To create your app, place your app's HTML file in the parent folder of the lib folder with reference to [sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) and other samples.
+<BR>
+<BR>
 When you are developing a new app based on a sample, the only thing you must do is:
 <BR>
 * Copy the sample HTML file and rename it.
@@ -92,7 +94,8 @@ When you are developing a new app based on a sample, the only thing you must do 
 <BR>
 That's all! If necessary, tweak the screen design and others.
 Once you get used to it, you'll be able to develop your app in no time.
-<P>
+<BR>
+<BR>
 When you distribute your app, don't forget to rewrite the copyright notices.
 
 ## ライセンス - Licence
