@@ -66,10 +66,10 @@ Any of results of calculations with sample apps are not guaranteed.
 <BR>
 + [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html)
 	- 2つの数値の四則演算
-	- Four arithmetic operations with two numbers
+	- The four arithmetic operations with two numbers
 + [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html)
 	- 3つの数値の平均値、標準偏差
-	- Means and the standard deviation of three numbers
+	- The means and the standard deviation of three numbers
 + [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html)
 	- Math クラスのラッパー関数の動作確認
 	- Checking the operations of the Math class wrapper functions
@@ -81,7 +81,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Interconversions of mouse and human doses
 + [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html)
 	- 腎機能の評価 (CCr と eGFR の計算)
-	- Evaluation of the renal function (calculation of CCr and eGFR)
+	- Evaluations of the renal function (calculation of CCr and eGFR)
 + [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)
 	- 小児薬用量計算
 	- Pediatric Dosage Calculations
