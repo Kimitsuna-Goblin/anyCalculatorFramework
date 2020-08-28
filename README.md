@@ -1,7 +1,7 @@
 # なんでも計算フレームワーク - anyCalculatorFramework
 
 ウェブブラウザ上で動く、シンプルな計算用アプリを簡単に作成できるフレームワークです。
-<BR>ライブラリ本体のソースファイルです。
+<BR>
 This is a framework that allows you to easily create simple calculation apps that run in a web browser.
 
 ## 説明 - Description
