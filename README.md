@@ -72,13 +72,13 @@ the formulas used in your app are simple and intuitive to write.
 <BR>
 Any of results of calculations with sample apps are not guaranteed.
 <BR>
-- [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html)			- Four arithmetic operations with two numbers
-- [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html)							- Means and standard deviation of three numbers
-- [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html)					- Checking the operations of the Math class wrapper functions
-- [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html)				- Calculation of human equivalent doses from doses to mice
-- [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html)	- Interconversions of mouse and human doses
-- [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html)							- Evaluation of the renal function (calculation of CCr and eGFR)
-- [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)						- Pediatric Dosage Calculations
+* [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html)			- Four arithmetic operations with two numbers
+* [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html)							- Means and standard deviation of three numbers
+* [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html)					- Checking the operations of the Math class wrapper functions
+* [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html)				- Calculation of human equivalent doses from doses to mice
+* [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html)	- Interconversions of mouse and human doses
+* [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html)							- Evaluation of the renal function (calculation of CCr and eGFR)
+* [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)						- Pediatric Dosage Calculations
 
 ## 使用方法 - Usage
 
