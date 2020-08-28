@@ -84,7 +84,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Evaluations of the renal function (calculation of CCr and eGFR)
 + [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)
 	- 小児薬用量計算
-	- Pediatric Dosage Calculations
+	- The pediatric dosage calculations
 
 ## 使用方法 - Usage
 
