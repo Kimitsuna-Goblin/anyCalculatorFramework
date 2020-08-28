@@ -63,14 +63,19 @@ the formulas used in your app are simple and intuitive to write.
 サンプルでの計算結果は無保証です。
 <BR>
 + [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html)
-+ +  2つの数値の四則演算
+++  2つの数値の四則演算
 + [sample2_average.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample2_average.html)
-+ +  3つの数値の平均値、標準偏差
-+ [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html) - Math クラスのラッパー関数の動作確認
-+ [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html) - マウスへの薬物投与量からのヒト等価用量計算
-+ [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html) - マウス用量とヒト用量の相互換算
-+ [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html) - 腎機能の評価 (CCr と eGFR の計算)
-+ [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html) - 小児薬用量計算
+++  3つの数値の平均値、標準偏差
++ [sample3_MathWrapper.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample3_MathWrapper.html)
+	+ Math クラスのラッパー関数の動作確認
++ [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html)
+	+ マウスへの薬物投与量からのヒト等価用量計算
++ [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html)
+	+ マウス用量とヒト用量の相互換算
++ [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html)
+	+ 腎機能の評価 (CCr と eGFR の計算)
++ [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)
+	+ 小児薬用量計算
 <BR>
 <BR>
 Any of results of calculations with sample apps are not guaranteed.
