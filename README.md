@@ -85,7 +85,9 @@ Any of results of calculations with sample apps are not guaranteed.
 + [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)
 	- 小児薬用量計算
 	- Pediatric dosage calculations
-
++ [sample8_Css-max.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample8_Css-max.html)
+	- y定常状態の最高血中濃度計算
+	- Calculation of maximum concentration at steady-state of a drug
 ## 使用方法 - Usage
 
 アプリを開発するには、サンプル ([sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) など) を参考に、
