@@ -75,7 +75,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Checking the operations of the Math class wrapper functions
 + [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html)
 	- マウスへの薬物投与量からのヒト等価用量計算
-	- Calculation of human equivalent doses from doses to mice
+	- Calculation of the human equivalent doses from the doses to mice
 + [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html)
 	- マウス用量とヒト用量の相互換算
 	- Interconversions of mouse and human doses
@@ -87,7 +87,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Pediatric dosage calculations
 + [sample8_Css-max.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample8_Css-max.html)
 	- y定常状態の最高血中濃度計算
-	- Calculation of maximum concentration at steady-state of a drug
+	- Calculation of the maximum concentration at steady-state of a drug
 ## 使用方法 - Usage
 
 アプリを開発するには、サンプル ([sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) など) を参考に、
