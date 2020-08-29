@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<HTML lang="ja">
+<!--
+	Copyright (C) 2020 浦 公統
+	Released under the MIT license.
+	see https://opensource.org/licenses/MIT/
+-->
+<HEAD>
+	<META charset="UTF-8">
+	<META name="viewport" content="width=device-width">
+	<TITLE>定常状態の最高血中濃度計算</TITLE>
+	<STYLE>
+		TABLE, TH, TD
+		{
+			border: solid 2px;
+		}
+	</STYLE>
+	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
+	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
+	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
+	<SCRIPT>
+		/**
+		 *	初期化
+		 */
+		function init()
+		{
+			//	入力項目
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
+			//	入力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var inputs = [
+							new itemInput( 'C<sub>max</sub>', 'Cmax' ),
+							new itemInput( 't<sub>1/2</sub>', 't1/2', 'h' ),
+							new itemInput( '投与回数/日', 'Dnum', '回', 1 )
+						];
+
+			//	出力項目
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3)
+			//	出力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			var outputs = [
+							new itemOutput( '蓄積率', 'R', null, 2 ),
+							new itemOutput( 'C<sub>ss max</sub>', 'Cssmax', null, 2 )
+						];
+ 
+
+			//	計算機アプリのインスタンス生成
+			//	インスタンスをグローバル変数に保持する必要はない (クラスの静的配列プロパティに保持される)
+			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			new anyCalculator( 'calculator', inputs, outputs, '定常状態の最高血中濃度計算', calc, onError, 3 );
+		}
+
+		/**
+		 *	計算関数
+		 *	@param	inputs		入力項目
+		 *	@param	outputs		出力項目
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 */
+		function calc( inputs, outputs )
+		{
+			var interval = 24 / inputs[ 'Dnum' ];
+			outputs[ 'R' ] = 1 / ( 1 - exp( -LN2 * interval / inputs[ 't1/2' ] ) );
+			outputs[ 'Cssmax' ] = outputs[ 'R' ] * inputs[ 'Cmax' ];
+		}
+
+		/**
+		 *	必須項目省略時のエラー処理
+		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *					item.title		項目名
+		 *					item.id			ID
+		 *					item.unit		単位
+		 *					item.initValue	初期値
+		 *					item.element	INPUT 要素
+		 */
+		function onError( item )
+		{
+			alert( item.title + 'は省略できません' );
+			item.element.focus();
+		}
+	</SCRIPT>
+</HEAD>
+<BODY onload="init();">
+	<!-- 計算機はこの TABLE に表示されます --->
+	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
+	<TABLE id="calculator"></TABLE>
+</BODY>
+</HTML>
