@@ -86,7 +86,7 @@ Any of results of calculations with sample apps are not guaranteed.
 	- 小児薬用量計算
 	- Pediatric dosage calculations
 + [sample8_Css-max.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample8_Css-max.html)
-	- 定常状態の最高血中濃度計算
+	- 薬物の定常状態の最高血中濃度計算
 	- Calculation of the maximum concentration at steady-state of a drug
 ## 使用方法 - Usage
 
