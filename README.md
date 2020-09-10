@@ -108,6 +108,7 @@ Any of results of calculations with sample apps are not guaranteed.
 慣れれば、あっという間にアプリを開発できるでしょう。
 
 あなたのアプリを配布する場合は、著作権表示を書き換えるのを忘れないようにしてください。
+また、配布の際、lib フォルダを同梱するのを忘れないでください。アプリを動かすためには lib フォルダが必要です。
 <BR>
 <BR>
 To create your app, place your app's HTML file in the parent folder of the lib folder with reference to [sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) and other samples.
@@ -115,7 +116,7 @@ To create your app, place your app's HTML file in the parent folder of the lib f
 <BR>
 When you are developing a new app based on a sample, the only thing you must do is:
 <BR>
-* Copy the sample HTML file and rename it.
+* Copy a sample HTML file and rename it.
 * Replace the copyright notice at the beginning of the file with your name.
 * Write the title of your app in the <TITLE> tag.
 * At the init() function, put in the inputs and outputs arrays of the item name, ID, unit, initial value (if necessary), optional flag (if necessary), and the number of decimal places (if necessary) of the input and output items to be used in the calculation, along with the notes in the comments.
@@ -124,6 +125,7 @@ When you are developing a new app based on a sample, the only thing you must do 
 <BR>
 That's all! If necessary, tweak the screen design and others.
 Once you get used to it, you'll be able to develop your app in no time.
+Also, don't forget to include the lib folder when you distribute the app. You need the lib folder to run your app.
 <BR>
 <BR>
 When you distribute your app, don't forget to rewrite the copyright notices.
