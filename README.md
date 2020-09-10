@@ -96,7 +96,7 @@ Any of results of calculations with sample apps are not guaranteed.
 <BR>
 サンプルをもとにして、新しいアプリを開発する場合、あなたが必ずやるべきことは、次のことだけです。
 <BR>
-+ サンプルの HTML ファイルをコピーして、ファイル名を書き換える
++ サンプルの HTML ファイルを同じフォルダにコピーして、ファイル名を書き換える
 + ファイル先頭の著作権表示をあなたの名前に書き換える
 + <TITLE> タグのところに、アプリのタイトルを書く
 + init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の、
@@ -116,7 +116,7 @@ To create your app, place your app's HTML file in the parent folder of the lib f
 <BR>
 When you are developing a new app based on a sample, the only thing you must do is:
 <BR>
-* Copy a sample HTML file and rename it.
+* Copy a sample HTML file to the same folder and rename it.
 * Replace the copyright notice at the beginning of the file with your name.
 * Write the title of your app in the <TITLE> tag.
 * At the init() function, put in the inputs and outputs arrays of the item name, ID, unit, initial value (if necessary), optional flag (if necessary), and the number of decimal places (if necessary) of the input and output items to be used in the calculation, along with the notes in the comments.
