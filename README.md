@@ -125,10 +125,10 @@ When you are developing a new app based on a sample, the only thing you must do 
 <BR>
 That's all! If necessary, tweak the screen design and others.
 Once you get used to it, you'll be able to develop your app in no time.
-Also, don't forget to include the lib folder when you distribute the app. You need the lib folder to run your app.
 <BR>
 <BR>
 When you distribute your app, don't forget to rewrite the copyright notices.
+Also, don't forget to include the lib folder with your distributing app. You need the lib folder to run your app.
 
 ## ライセンス - Licence
 
