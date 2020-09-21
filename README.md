@@ -109,7 +109,7 @@ Any of results of calculations with sample apps are not guaranteed.
 + ファイル先頭の著作権表示をあなたの名前に書き換える
 + <TITLE> タグのところに、アプリのタイトルを書く
 + init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く
-+ calc() 関数内に計算式を書く。計算式では、入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
++ calc() 関数内に計算式を書く。入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
 + 動作確認をする
 
 以上です！必要に応じて、画面デザインをいじるなどしてください。
