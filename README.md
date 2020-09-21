@@ -152,15 +152,15 @@ First, at the initialize function (init()), code in the following order.
 
 1. 入力項目設定 - Defining of input items
 
-	例(example): new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
+	例 (Ex.): new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
 
 2. 出力項目設定 - Defining of output items
 
-	例(example): new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
+	例 (Ex.): new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
 
 3. 計算機アプリのインスタンス生成 - Create an instance of the calculator app
 
-	例(example): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError, 4 );
+	例 (Ex.): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError, 4 );
 
 計算機アプリのインスタンスが生成されると、画面上に計算機アプリが表示されます。
 表示されない場合は、コーディングに間違いがないか確認してください。
@@ -182,7 +182,7 @@ Each input number has been set to input[ '<I>input item ID<I>' ].
 Set each result of calculation to output[ '<I>outpue item ID</I>' ], and finish the function.
 No function return value is required.
 
-	例(example): outputs[ 'humanDosage' ] = inputs[ 'mouseDosage' ] * pow( inputs[ 'mouseWeight' ] / 1000.0 / inputs[ 'humanWeight' ], 1 / 3 );
+	例 (Ex.): outputs[ 'humanDosage' ] = inputs[ 'mouseDosage' ] * pow( inputs[ 'mouseWeight' ] / 1000.0 / inputs[ 'humanWeight' ], 1 / 3 );
 
 入力項目が空欄だったり、数値以外が入力された場合は、通常はエラーになり、入力エラーコールバック関数が呼び出されます。
 その場合、計算コールバック関数は呼び出されません。
