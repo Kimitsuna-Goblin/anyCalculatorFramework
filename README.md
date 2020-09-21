@@ -109,7 +109,7 @@ Any of results of calculations with sample apps are not guaranteed.
 + ファイル先頭の著作権表示をあなたの名前に書き換える
 + <TITLE> タグのところに、アプリのタイトルを書く
 + init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く
-+ calc() 関数内に計算式を書く。計算式では、入力項目は inputs[ '<I>項目ID</I>' ]、出力項目は outputs[ '<I>項目ID</I>' ] のように書いてください
++ calc() 関数内に計算式を書く。計算式では、入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
 + 動作確認をする
 
 以上です！必要に応じて、画面デザインをいじるなどしてください。
@@ -126,7 +126,7 @@ When you are developing a new app based on a sample, all you have to do, at a mi
 * Replace the copyright notice at the beginning of the file with your name.
 * Write the title of your app in the <TITLE> tag.
 * At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
-* Write the formula in the calc() function. write inputs[ '<I>item ID</I>' ] for input items and outputs[ '<I>item ID</I>' ] for output items.
+* Write the formula in the calc() function. write inputs[ '<I>input item ID</I>' ] for input items and outputs[ '<I>output item ID</I>' ] for output items.
 * Check if your app works well.
 
 That's all! If necessary, tweak the screen design and others.
