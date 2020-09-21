@@ -144,7 +144,7 @@ Also, don't forget to include the lib folder with your distributing app. You nee
 <BR>
 The code is written in JavaScript on the HTML file.
 You can see actual coding samples at
-[sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations. html) and so on.
+[sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html) and so on.
 
 まず、初期化関数 init() において、次の順番にコーディングします。
 <BR>
