@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<HTML lang="ja">
+<html lang="ja">
 <!--
 	Copyright (C) 2020 浦 公統
 	Released under the MIT license.
 	see https://opensource.org/licenses/MIT/
 -->
-<HEAD>
-	<META charset="UTF-8">
-	<META name="viewport" content="width=device-width">
-	<TITLE>四則演算 サンプル</TITLE>
-	<STYLE>
-		TABLE, TH, TD
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>四則演算 サンプル</title>
+	<style>
+		table, th, td
 		{
 			border: solid 2px;
 		}
-	</STYLE>
-	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
-	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
-	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
-	<SCRIPT>
+	</style>
+	<script src="./lib/anyCalculatorFramework.js"></script>
+	<script src="./lib/formatDecimal.js"></script>
+	<script src="./lib/MathWrapper.js"></script>
+	<script>
 		/**
 		 *	初期化
 		 */
@@ -26,35 +26,34 @@
 		{
 			//	入力項目
 			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
-			//	入力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			//	入力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var inputs = [
 							new itemInput( '数値1', 'n1' ),
 							new itemInput( '数値2', 'n2' )
 						];
 
 			//	出力項目
-			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3)
-			//	出力項目IDは1個の計算機内で同じものを重複して使うことはできません
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3)
+			//	出力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var outputs = [
 							new itemOutput( '数値1 + 数値2', 'out1' ),
 							new itemOutput( '数値1 - 数値2', 'out2' ),
 							new itemOutput( '数値1 * 数値2', 'out3' ),
 							new itemOutput( '数値1 / 数値2', 'out4' )
 						];
- 
+
 
 			//	計算機アプリのインスタンス生成
-			//	インスタンスをグローバル変数に保持する必要はない (クラスの静的配列プロパティに保持される)
-			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			//	計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4)
 			new anyCalculator( 'calculator', inputs, outputs, '計算', calc, onError );
 		}
 
 		/**
-		 *	計算関数
+		 *	計算コールバック関数
 		 *	@param	inputs		入力項目
 		 *	@param	outputs		出力項目
-		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
-		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (数値が入力されてない項目には NaN が入る)
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること
 		 */
 		function calc( inputs, outputs )
 		{
@@ -65,24 +64,24 @@
 		}
 
 		/**
-		 *	必須項目省略時のエラー処理
-		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *	入力エラーコールバック関数
+		 *	@param	item	入力エラー項目の itemInput オブジェクト
 		 *					item.title		項目名
 		 *					item.id			ID
 		 *					item.unit		単位
 		 *					item.initValue	初期値
-		 *					item.element	INPUT 要素
+		 *					item.element	input 要素
 		 */
 		function onError( item )
 		{
-			alert( item.title + 'は省略できません' );
+			alert( item.title + 'に数値を入力してください' );
 			item.element.focus();
 		}
-	</SCRIPT>
-</HEAD>
-<BODY onload="init();">
-	<!-- 計算機はこの TABLE に表示されます --->
-	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
-	<TABLE id="calculator"></TABLE>
-</BODY>
-</HTML>
+	</script>
+</head>
+<body onload="init();">
+	<!-- 計算機アプリはこの table に表示されます --->
+	<!-- この table の id と new anyCalculator() の第1引数に、計算機アプリのIDを指定します -->
+	<table id="calculator"></table>
+</body>
+</html>

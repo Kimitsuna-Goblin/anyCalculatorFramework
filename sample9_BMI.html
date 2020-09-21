@@ -8,7 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
-	<title>ヒト等価用量計算・逆計算</title>
+	<title>BMI計算</title>
 	<style>
 		table, th, td
 		{
@@ -31,77 +31,79 @@
 			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
 			//	入力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var inputs = [
-							new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0 ),
-							new itemInput( 'ヒト体重', 'humanWeight', 'kg', 63.6 ),
-							new itemInput( 'マウス用量', 'mouseDosage', 'mg/kg' )
+							new itemInput( '身長', 'height', 'cm', null, false ),
+							new itemInput( '体重', 'weight', 'kg', null, false )
 						];
 
 			//	出力項目
 			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3)
 			//	出力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var outputs = [
-							new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg' ),
-							new itemOutput( '標準成人用量', 'adultDosage', 'mg' )
+							new itemOutput( 'BMI', 'BMI', null, 1 ),
+							new itemOutput( '理想体重', 'bestWeight', 'kg', 1 ),
+							new itemOutput( '傾向', 'observation', null, -1 )
 						];
 
 			//	計算機アプリのインスタンス生成
 			//	計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4)
-			new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError );
+			new anyCalculator( 'BMI', inputs, outputs, 'BMI計算', calcBMI, onError, 5 );
 
 			//	2つ目の計算機アプリの設定
 			//	入力項目
 			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
 			//	入力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			inputs = [
-							new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0 ),
-							new itemInput( 'ヒト体重', 'humanWeight', 'kg', 63.6 ),
-							new itemInput( '標準ヒト用量', 'humanDosage', 'mg' )
+							new itemInput( '身長', 'height', 'cm', null, false ),
+							new itemInput( '目標BMI', 'targetBMI', null, 23, false )
 					];
 
 			//	出力項目
 			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3)
 			//	出力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			outputs = [
-							new itemOutput( 'マウス用量', 'mouseDosagePerWeight', 'mg/kg' ),
-						 	new itemOutput( '1匹当たり用量', 'mouseDosagePerBody', 'mg' )
+							new itemOutput( '目標体重', 'targetWeight', 'kg', 1 )
 					 ];
 
 			//	計算機アプリのインスタンス生成
 			//	計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4)
-			new anyCalculator( 'humanToMouse', inputs, outputs, 'マウス用量計算', calcMouseDosage, onError );
+			new anyCalculator( 'targetWeight', inputs, outputs, '目標体重計算', calcTargetWeight, onError, 5 );
 		}
 
 		/**
 		 *	計算コールバック関数 1
-		 *	ヒト等価用量を計算する
-		 *	@param	inputs		入力項目
-		 *	@param	outputs		出力項目
+		 *	BMI・理想体重を計算
 		 *	@note	inputs[ '項目名' ] に入力数値が入る (数値が入力されてない項目には NaN が入る)
 		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること
 		 */
-		function calcHumanDosage( inputs, outputs )
+		function calcBMI( inputs, outputs )
 		{
-			outputs[ 'humanDosage' ] = inputs[ 'mouseDosage' ]
-											* cbrt( inputs[ 'mouseWeight' ] / 1000.0 / inputs[ 'humanWeight' ] );
-			outputs[ 'adultDosage' ] = inputs[ 'mouseDosage' ]
-											* cbrt( inputs[ 'mouseWeight' ] / 1000.0 * inputs[ 'humanWeight' ] * inputs[ 'humanWeight' ] );
+			var threshold = [ 18.5, 22, 23, 25, 30, 35, 40 ];	//	体重の閾値
+			var observations = [ 'やせ過ぎ', 'やせ気味', '標準的', '理想的', '肥満気味', '肥満(2度)', '肥満(3度)', '肥満(4度)' ];
+																//	傾向判定
+
+			outputs[ 'BMI' ] = inputs[ 'weight' ] / ( inputs[ 'height' ] * inputs[ 'height' ] / 10000.0 );
+			outputs[ 'bestWeight' ] = 23.0 * ( inputs[ 'height' ] * inputs[ 'height' ] / 10000.0 );
+
+			for ( var i = 0; i < threshold.length; i++ )
+			{
+				if ( outputs[ 'BMI' ] < threshold[i] )
+				{
+					outputs[ 'observation' ] = observations[i];
+					return;
+				}
+			}
+			outputs[ 'observation' ] = observations[i];
 		}
 
 		/**
 		 *	計算コールバック関数 2
-		 *	マウス用量を計算する
-		 *	@param	inputs		入力項目
-		 *	@param	outputs		出力項目
+		 *	目標体重を計算
 		 *	@note	inputs[ '項目名' ] に入力数値が入る (数値が入力されてない項目には NaN が入る)
 		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること
 		 */
-		function calcMouseDosage( inputs, outputs )
+		function calcTargetWeight( inputs, outputs )
 		{
-			humanDosage_PerKg = inputs[ 'humanDosage' ] / inputs[ 'humanWeight' ];
-			mouse_kg = inputs[ 'mouseWeight' ] / 1000.0;
-
-			outputs[ 'mouseDosagePerWeight' ] = humanDosage_PerKg * cbrt( inputs[ 'humanWeight' ] / mouse_kg );
-			outputs[ 'mouseDosagePerBody' ] = humanDosage_PerKg * cbrt( inputs[ 'humanWeight' ] * mouse_kg * mouse_kg );
+			outputs[ 'targetWeight' ] = inputs[ 'targetBMI' ] * ( inputs[ 'height' ] * inputs[ 'height' ] / 10000.0 );
 		}
 
 		/**
@@ -124,9 +126,9 @@
 	<!-- 計算機アプリはこれらの table に表示されます --->
 	<!-- id を複数使えば、1個のHTML上にいくらでも計算機アプリを配置できます -->
 	<!-- この table の id と、1つ目の new anyCalculator() の第1引数に、1つ目の計算機アプリのIDを指定します -->
-	<table id="mouseToHuman"></table>
+	<table id="BMI"></table>
 	<br>
 	<!-- この table の id と、2つ目の new anyCalculator() の第1引数に、2つ目の計算機アプリのIDを指定します -->
-	<table id="humanToMouse"></table>
+	<table id="targetWeight"></table>
 </body>
 </html>

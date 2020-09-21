@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<HTML lang="ja">
+<html lang="ja">
 <!--
 	Copyright (C) 2020 浦 公統
 	Released under the MIT license.
 	see https://opensource.org/licenses/MIT/
 -->
-<HEAD>
-	<META charset="UTF-8">
-	<META name="viewport" content="width=device-width">
-	<TITLE>小児薬用量計算</TITLE>
-	<STYLE>
-		TABLE, TH, TD
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>小児薬用量計算</title>
+	<style>
+		table, th, td
 		{
 			border: solid 2px;
 		}
-	</STYLE>
-	<SCRIPT src="./lib/anyCalculatorFramework.js"></SCRIPT>
-	<SCRIPT src="./lib/formatDecimal.js"></SCRIPT>
-	<SCRIPT src="./lib/MathWrapper.js"></SCRIPT>
-	<SCRIPT>
+	</style>
+	<script src="./lib/anyCalculatorFramework.js"></script>
+	<script src="./lib/formatDecimal.js"></script>
+	<script src="./lib/MathWrapper.js"></script>
+	<script>
 		/**
 		 *	初期化
 		 */
 		function init()
 		{
+			//	このHTMLは1個の画面に2つの計算機アプリを表示します。
+
+			//	1つ目の計算機アプリの設定
 			//	成人用量 → 小児薬用量
 			//	入力項目
-			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false) 
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
+			//	入力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var inputs = [
 							new itemInput( '性別 (1:男性 2:女性)', 'sex' ),
 							new itemInput( '年齢', 'age', '歳' ),
@@ -35,19 +39,22 @@
 						];
 
 			//	出力項目
-			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3) 
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3)
+			//	出力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			var outputs = [
 							new itemOutput( '体表面積 (概算)', 'BS', 'm<sup>2</sup>', 2 ),
 							new itemOutput( '小児薬用量', 'childDose', null, 2 )
 						];
 
 			//	計算機アプリのインスタンス生成
-			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			//	計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4)
 			new anyCalculator( 'childDose', inputs, outputs, '小児薬用量計算', calcChildDose, onError, 3 );
 
+			//	2つ目の計算機アプリの設定
 			//	小児薬用量 → 成人量換算
 			//	入力項目
-			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false) 
+			//	項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false)
+			//	入力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			inputs = [
 							new itemInput( '性別 (1:男性 2:女性)', 'sex' ),
 							new itemInput( '年齢', 'age', '歳' ),
@@ -56,22 +63,24 @@
 					];
 
 			//	出力項目
-			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (省略時は 3) 
+			//	項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3)
+			//	出力項目IDは1個の計算機アプリ内で同じものを重複して使うことはできません
 			outputs = [
 							new itemOutput( '換算成人量', 'adultDose', null, 1 )
 					];
 
 			//	計算機アプリのインスタンス生成
-			//	TABLEタグのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算式の関数, 必須項目省略エラー時の関数 (省略時は何もしない), テキストサイズ (省略時は4)
+			//	計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4)
 			new anyCalculator( 'adultDose', inputs, outputs, '成人量換算', calcAdultDose, onError, 3 );
 		}
 
 		/**
+		 *	計算コールバック関数 1
 		 *	小児薬用量を計算する
 		 *	@param	inputs		入力項目
 		 *	@param	outputs		出力項目
-		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
-		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (数値が入力されてない項目には NaN が入る)
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること
 		 */
 		function calcChildDose( inputs, outputs )
 		{
@@ -89,7 +98,7 @@
 				alert( '性別が不正です' );
 				return;
 			}
-			
+
 			//	成人基準体重
 			var adultWeight = 0;
 			if ( isFemale )
@@ -114,20 +123,21 @@
 					adultWeight = 64.3;
 				}
 			}
-			
+
 			//	体表面積
 			outputs[ 'BS' ] = 1.73 * pow( inputs[ 'weight' ] / adultWeight, 2 / 3 );
-			
+
 			//	小児薬用量
 			outputs[ 'childDose' ] = inputs[ 'adultDose' ] * pow( inputs[ 'weight' ] / adultWeight, 2 / 3 );
 		}
 
 		/**
+		 *	計算コールバック関数 2
 		 *	換算成人量を計算する
 		 *	@param	inputs		入力項目
 		 *	@param	outputs		出力項目
-		 *	@note	inputs[ '項目名' ] に入力数値が入る (省略時は NaN が入る。それ以外は数値 (Number型) であることを期待してよい)。
-		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること。
+		 *	@note	inputs[ '項目名' ] に入力数値が入る (数値が入力されてない項目には NaN が入る)
+		 *			outputs[ '項目名' ] に計算結果を入れて関数を終了すること
 		 */
 		function calcAdultDose( inputs, outputs )
 		{
@@ -170,33 +180,35 @@
 					adultWeight = 64.3;
 				}
 			}
-			
+
 			//	換算成人量
 			outputs[ 'adultDose' ] = inputs[ 'childDose' ] * pow( adultWeight / inputs[ 'weight' ], 2 / 3 );
 		}
 
 		/**
-		 *	必須項目省略時のエラー処理
-		 *	@param	item	入力が省略された項目の itemInput オブジェクト
+		 *	入力エラーコールバック関数
+		 *	@param	item	入力エラー項目の itemInput オブジェクト
 		 *					item.title		項目名
 		 *					item.id			ID
 		 *					item.unit		単位
 		 *					item.initValue	初期値
-		 *					item.element	INPUT 要素
+		 *					item.element	input 要素
 		 */
 		function onError( item )
 		{
-			alert( item.title + 'は省略できません' );
+			alert( item.title + 'に数値を入力してください' );
 			item.element.focus();
 		}
-	</SCRIPT>
-</HEAD>
-<BODY onload="init();">
-	<!-- 計算機はこの TABLE に表示されます --->
-	<!-- この TABLE の id を new anyCalculator() の第1引数に指定します -->
-	<TABLE id="childDose"></TABLE>
-	<BR>
-	<TABLE id="adultDose"></TABLE>
-	<P>※小児薬用量の計算および成人量換算は拡張Clark式で計算しています。</P>
-</BODY>
-</HTML>
+	</script>
+</head>
+<body onload="init();">
+	<!-- 計算機アプリはこれらの table に表示されます --->
+	<!-- id を複数使えば、1個のHTML上にいくらでも計算機アプリを配置できます -->
+	<!-- この table の id と、1つ目の new anyCalculator() の第1引数に、1つ目の計算機アプリのIDを指定します -->
+	<table id="childDose"></table>
+	<br>
+	<!-- この table の id と、2つ目の new anyCalculator() の第1引数に、2つ目の計算機アプリのIDを指定します -->
+	<table id="adultDose"></table>
+	<p>※小児薬用量の計算および成人量換算は拡張Clark式で計算しています。</p>
+</body>
+</html>
