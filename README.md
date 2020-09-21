@@ -173,7 +173,7 @@ If not appear, look for mistakes in the source code.
 If you want to display multiple calculator apps on one screen, write codes for each calculator app as above.
 
 次に、計算コールバック関数に、実際の計算をコーディングします。
-input[ '<I>入力項目ID<I>' ] に入力数値が入っています。
+input[ '<I>入力項目ID</I>' ] に入力数値が入っています。
 計算結果を output[ '<I>出力項目ID</I>' ] に入れて、関数を終了してください。
 関数の戻り値は不要です。
 <BR>
