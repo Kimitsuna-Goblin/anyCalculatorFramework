@@ -72,19 +72,23 @@ Any of results of calculations with sample apps are not guaranteed.
 	- Math クラスのラッパー関数の動作確認
 	- Checking the operations of the Math class wrapper functions
 + [sample4_mouse-to-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample4_mouse-to-human.html)
-	- マウスへの薬物投与量からのヒト等価用量計算。入力項目に単位と初期値を与えているサンプル
+	- マウスへの薬物投与量からのヒト等価用量計算
+	- 入力項目に単位と初期値を与えているサンプル
 	- Calculation of the human equivalent doses from the doses to mice
 	- Units and default values are given for the input items
 + [sample5_both-mouse-and-human.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample5_both-mouse-and-human.html)
-	- マウス用量とヒト用量の相互換算。1画面に2つの計算機があるサンプル
+	- マウス用量とヒト用量の相互換算
+	- 1画面に2つの計算機を表示するサンプル
 	- Interconversions of mouse and human doses
 	- 2 calculators in a screen
 + [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample6_CCr-eGFR.html)
-	- 腎機能の評価 (CCr と eGFR の計算)。省略可能な入力項目を含むサンプル
+	- 腎機能の評価 (CCr と eGFR の計算)
+	- 省略可能な入力項目を含むサンプル
 	- Evaluations of the renal function (calculation of CCr and eGFR)
 	- An optional input item is included
 + [sample7_child-dose.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample7_child-dose.html)
-	- 小児薬用量計算。1画面に2つの計算機があるサンプル
+	- 小児薬用量計算
+	- 1画面に2つの計算機を表示するサンプル
 	- Pediatric dosage calculations
 	- 2 calculators in a screen
 + [sample8_Css-max.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample8_Css-max.html)
@@ -147,10 +151,15 @@ You can see actual coding samples at
 First, at the initialize function (init()), code in the following order.
 
 1. 入力項目設定 - Defining of input items
+
 	例(example): new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
+
 2. 出力項目設定 - Defining of output items
+
 	例(example): new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
+
 3. 計算機アプリのインスタンス生成 - Create an instance of the calculator app
+
 	例(example): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError, 4 );
 
 計算機アプリのインスタンスが生成されると、画面上に計算機アプリが表示されます。
