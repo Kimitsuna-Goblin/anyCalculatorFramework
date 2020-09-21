@@ -178,7 +178,7 @@ input[ '<I>入力項目ID</I>' ] に入力数値が入っています。
 関数の戻り値は不要です。
 <BR>
 Next, write code to do the actual calculation into the calculation callback function.
-Each input number has been set to input[ '<I>input item ID<I>' ].
+Each input number has been set to input[ '<I>input item ID</I>' ].
 Set each result of calculation to output[ '<I>outpue item ID</I>' ], and finish the function.
 No function return value is required.
 
@@ -206,7 +206,7 @@ rewrite the code of the input error callback function (onError()).
 計算機アプリは <table id="<I>計算機アプリのID</I>"></table> と書かれた部分に表示されます。
 <BR>
 Finally, please check the HTML for the part that displays the calculator app and rewrite it if necessary.
-The calculator app is displayed in the part written <table id="<I>Computer application ID</I>"></table>.
+The calculator app is displayed in the part written <table id="<I>calculator app ID</I>"></table>.
 
 
 特に、1つの画面に複数の計算機アプリを表示する場合は、計算機アプリのIDを間違えないようにしてください。
