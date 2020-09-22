@@ -112,8 +112,8 @@ When you are developing a new app based on a sample, all you have to do, at a mi
 	- Copy a sample HTML file to the same folder and rename it.
 + ファイル先頭の著作権表示をあなたの名前に書き換える
 	- Replace the copyright notice at the beginning of the file with your name.
-+ <TITLE> タグのところに、アプリのタイトルを書く
-	- Write the title of your app in the <TITLE> tag.
++ &gt;TITLE&lt; タグのところに、アプリのタイトルを書く
+	- Write the title of your app in the &gt;TITLE&lt; tag.
 + init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く
 	- At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
 + calc() 関数内に計算式を書く。入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
