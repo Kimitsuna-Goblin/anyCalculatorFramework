@@ -109,17 +109,16 @@ To create a new calculator app, place your app's HTML file in the parent folder 
 When you are developing a new app based on a sample, all you have to do, at a minimum, is:
 
 + サンプルの HTML ファイルを同じフォルダにコピーして、ファイル名を書き換える
-	- Copy a sample HTML file to the same folder and rename it.
+- Copy a sample HTML file to the same folder and rename it.
 + ファイル先頭の著作権表示をあなたの名前に書き換える
-	- Replace the copyright notice at the beginning of the file with your name.
+- Replace the copyright notice at the beginning of the file with your name.
 + <TITLE> タグのところに、アプリのタイトルを書く
-	- Write the title of your app in the <TITLE> tag.
-+ init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く
-	- At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
+- Write the title of your app in the <TITLE> tag.
++ init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く - At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
 + calc() 関数内に計算式を書く。入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
-	- Write the formula in the calc() function. write inputs[ '<I>input item ID</I>' ] for input items and outputs[ '<I>output item ID</I>' ] for output items.
+- Write the formula in the calc() function. write inputs[ '<I>input item ID</I>' ] for input items and outputs[ '<I>output item ID</I>' ] for output items.
 + 動作確認をする
-	- Check if your app works well.
+- Check if your app works well.
 
 以上です！必要に応じて、画面デザインをいじるなどしてください。
 慣れれば、あっという間にアプリを開発できるでしょう。
