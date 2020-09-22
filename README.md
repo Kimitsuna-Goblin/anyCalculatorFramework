@@ -152,13 +152,22 @@ First, at the initialize function (init()), code in the following order.
 
 	例 (Ex.): new itemInput( 'マウス体重(Weight of Mouse)', 'mouseWeight', 'g', 19.0, false ),
 
+	+ 引数は 項目名, 入力項目ID, 単位 (省略時は空), 初期値 (省略時は空), 省略可否フラグ (省略時は false) です。	
+	+ Arguments are item title, input item ID, unit (default:blank), default value (default:blank) and optional item flag (default:false).
+
 2. 出力項目設定 - Defining of output items
 
 	例 (Ex.): new itemOutput( 'ヒト用量(Dosage for Human)', 'humanDosage', 'mg/kg', 3 ),
 
+	+ 引数は 項目名, 出力項目ID, 単位 (省略時は空), 小数点以下桁数 (数値ではなく、文字列を出力する場合は -1) (省略時は 3) です。	
+	+ Arguments are item title, output item ID, unit (default:blank) and number of decimal places (-1 for string output, default:3).
+
 3. 計算機アプリのインスタンス生成 - Create an instance of the calculator app
 
 	例 (Ex.): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算(Calculate Human Dosage)', calcHumanDosage, onError, 4 );
+
+	+ 引数は 計算機アプリのID, 入力項目, 出力項目, 計算ボタンのキャプション, 計算コールバック関数, 入力エラーコールバック関数, テキストサイズ (省略時は4) です。	
+	+ Arguments are calculator app ID, input items, output items, button caption for calculation, calculation callback function, error callback function and text field size (default:4).
 
 計算機アプリのインスタンスが生成されると、画面上に計算機アプリが表示されます。
 表示されない場合は、コーディングに間違いがないか確認してください。
@@ -198,7 +207,7 @@ See [sample6_CCr-eGFR.html](https://kimitsuna-goblin.github.io/anyCalculatorFram
 入力エラーコールバック関数 (onError()) のコードを書き換えてください。
 <BR>
 If you want to do something special when there is an input error,
-rewrite the code of the input error callback function (onError()).
+rewrite the code of the error callback function (onError()).
 
 最後に、計算機アプリを表示する部分の HTML を確認し、必要に応じて書き換えます。
 計算機アプリは <table id="<I>計算機アプリのID</I>"></table> と書かれた部分に表示されます。
