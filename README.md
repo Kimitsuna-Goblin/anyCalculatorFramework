@@ -150,19 +150,15 @@ First, at the initialize function (init()), code in the following order.
 
 1. 入力項目設定 - Defining of input items
 
-	例: new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
-<BR>
-	Ex.: new itemInput( 'Weight of Mouse', 'mouseWeight', 'g', 19.0, false ),
+	例 (Ex.): new itemInput( 'マウス体重(Weight of Mouse)', 'mouseWeight', 'g', 19.0, false ),
 
 2. 出力項目設定 - Defining of output items
 
-	例: new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
-<BR>
-	Ex.: new itemOutput( 'Dosage for Human', 'humanDosage', 'mg/kg', 3 ),
+	例 (Ex.): new itemOutput( 'ヒト用量(Dosage for Human)', 'humanDosage', 'mg/kg', 3 ),
 
 3. 計算機アプリのインスタンス生成 - Create an instance of the calculator app
 
-	例 (Ex.): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算', calcHumanDosage, onError, 4 );
+	例 (Ex.): new anyCalculator( 'mouseToHuman', inputs, outputs, 'ヒト用量計算(Calculate Human Dosage)', calcHumanDosage, onError, 4 );
 
 計算機アプリのインスタンスが生成されると、画面上に計算機アプリが表示されます。
 表示されない場合は、コーディングに間違いがないか確認してください。
