@@ -140,7 +140,7 @@ Also, don't forget to include the lib folder with your distributing app. You nee
  ([sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html) など)
 を参照してください。
 <BR>
-You should write code in JavaScript on the HTML file.
+You should write code in JavaScript on a HTML file.
 You can see coding samples at
 [sample1_four-operations.html](https://kimitsuna-goblin.github.io/anyCalculatorFramework/sample1_four-operations.html) and so on.
 
