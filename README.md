@@ -102,36 +102,41 @@ Any of results of calculations with sample apps are not guaranteed.
 
 計算機アプリを開発するには、サンプル ([sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) など) を参考に、
 計算機アプリ用の HTML ファイルを作成して、lib フォルダの親フォルダに配置してください。
+<BR>
+To create a new calculator app, place your app's HTML file in the parent folder of the lib folder with reference to [sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) and other samples.
 
 サンプルをもとにして、新しいアプリを開発する場合、あなたが最低限やるべきことは、次のことだけです。
+<BR>
+When you are developing a new app based on a sample, all you have to do, at a minimum, is:
 
 + サンプルの HTML ファイルを同じフォルダにコピーして、ファイル名を書き換える
+<BR>
+	Copy a sample HTML file to the same folder and rename it.
 + ファイル先頭の著作権表示をあなたの名前に書き換える
+<BR>
+	Replace the copyright notice at the beginning of the file with your name.
 + <TITLE> タグのところに、アプリのタイトルを書く
+<BR>
+	Write the title of your app in the <TITLE> tag.
 + init() 関数内の inputs 配列と outputs 配列に、計算に使う入出力項目の 項目名、項目ID、単位などをコメントの注意書きに従って書く
+<BR>
+	At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
 + calc() 関数内に計算式を書く。入力項目は inputs[ '<I>入力項目ID</I>' ]、出力項目は outputs[ '<I>出力項目ID</I>' ] のように書いてください
+<BR>
+	Write the formula in the calc() function. write inputs[ '<I>input item ID</I>' ] for input items and outputs[ '<I>output item ID</I>' ] for output items.
 + 動作確認をする
+<BR>
+	Check if your app works well.
 
 以上です！必要に応じて、画面デザインをいじるなどしてください。
 慣れれば、あっという間にアプリを開発できるでしょう。
+<BR>
+That's all! If necessary, tweak the screen design and others.
+Once you get used to it, you'll be able to develop your app in no time.
 
 あなたのアプリを配布する場合は、著作権表示を書き換えるのを忘れないようにしてください。
 また、配布の際、lib フォルダを同梱するのを忘れないでください。アプリを動かすためには lib フォルダが必要です。
-
-To create a new calculator app, place your app's HTML file in the parent folder of the lib folder with reference to [sample1_four-operations.html](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/sample1_four-operations.html) and other samples.
-
-When you are developing a new app based on a sample, all you have to do, at a minimum, is:
-
-* Copy a sample HTML file to the same folder and rename it.
-* Replace the copyright notice at the beginning of the file with your name.
-* Write the title of your app in the <TITLE> tag.
-* At the init() function, put in the inputs and outputs arrays of the item name, item ID, unit, etc., according to the comments in the sample source.
-* Write the formula in the calc() function. write inputs[ '<I>input item ID</I>' ] for input items and outputs[ '<I>output item ID</I>' ] for output items.
-* Check if your app works well.
-
-That's all! If necessary, tweak the screen design and others.
-Once you get used to it, you'll be able to develop your app in no time.
-More detail how to code
+<BR>
 When you distribute your app, don't forget to rewrite the copyright notices.
 Also, don't forget to include the lib folder with your distributing app. You need the lib folder to run your app.
 
@@ -152,11 +157,15 @@ First, at the initialize function (init()), code in the following order.
 
 1. 入力項目設定 - Defining of input items
 
-	例 (Ex.): new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
+	例: new itemInput( 'マウス体重', 'mouseWeight', 'g', 19.0, false ),
+<BR>
+	Ex.: new itemInput( 'Weight of Mouse', 'mouseWeight', 'g', 19.0, false ),
 
 2. 出力項目設定 - Defining of output items
 
-	例 (Ex.): new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
+	例: new itemOutput( 'ヒト用量', 'humanDosage', 'mg/kg', 3 ),
+<BR>
+	Ex.: new itemOutput( 'Dosage for Human', 'humanDosage', 'mg/kg', 3 ),
 
 3. 計算機アプリのインスタンス生成 - Create an instance of the calculator app
 
