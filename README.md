@@ -221,7 +221,7 @@ The calculator app is displayed in the part written <table id="<I>calculator app
 In particular, when displaying multiple computer applications on the same screen,
 please make sure not to mistake the IDs of the calculator apps.
 
-## ライセンス - Licence
+## ライセンス - License
 
 [MIT](https://github.com/Kimitsuna-Goblin/anyCalculatorFramework/blob/master/LICENSE)
 
